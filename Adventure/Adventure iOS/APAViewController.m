@@ -63,18 +63,21 @@
 @implementation APAViewController
 
 #pragma mark - View Lifecycle
-- (void)viewWillAppear:(BOOL)animated {
+- (void)viewWillAppear:(BOOL)animated
+{
     // Start the progress indicator animation.
     [self.loadingProgressIndicator startAnimating];
     
     // Load the shared assets of the scene before we initialize and load it.
     [APAAdventureScene loadSceneAssetsWithCompletionHandler:^{
+        
         CGSize viewSize = self.view.bounds.size;
         
         // On iPhone/iPod touch we want to see a similar amount of the scene as on iPad.
         // So, we set the size of the scene to be double the size of the view, which is
         // the whole screen, 3.5- or 4- inch. This effectively scales the scene to 50%.
-        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
+        if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone)
+        {
             viewSize.height *= 2;
             viewSize.width *= 2;
         }
@@ -91,6 +94,7 @@
         [self.skView presentScene:scene];
         
         [UIView animateWithDuration:2.0 delay:0.0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            
             self.archerButton.alpha = 1.0f;
             self.warriorButton.alpha = 1.0f;
         } completion:NULL];
@@ -103,16 +107,20 @@
 #endif
 }
 
-- (BOOL)prefersStatusBarHidden {
+- (BOOL)prefersStatusBarHidden
+{
     return YES;
 }
 
 #pragma mark - Rotation
-- (BOOL)shouldAutorotate {
+
+- (BOOL)shouldAutorotate
+{
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations {
+- (NSUInteger)supportedInterfaceOrientations
+{
     return UIInterfaceOrientationMaskLandscape;
 }
 
